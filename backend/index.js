@@ -7,7 +7,6 @@ var multer = require('multer');
 var path = require('path');
 
 app.use('/static', express.static(__dirname + '/public'));
-app.use('/', express.static(__dirname + '/app'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended : false}))
 app.use(function (req, res, next) {
