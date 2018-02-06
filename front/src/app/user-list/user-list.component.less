@@ -1,0 +1,437 @@
+@grey: #445561;
+@orange: #f26b43;
+@red:#e84764;
+@white:#fff;
+@green:#30ca36;
+@yellow:#d7e42a;
+@font-family:"ubuntu",sans-serif;
+
+
+@media (min-width: 768px)
+{
+  .table-wrap{
+    width: 750px;
+}
+}
+
+@media (min-width: 992px)
+{
+  .table-wrap {
+    width: 970px;
+}
+}
+
+@media (min-width: 1200px){
+  .table-wrap {
+    width: 1170px;
+}
+}
+
+
+
+.search-wrap {
+  margin-bottom:10px;
+  margin-right: 10px;
+  display: inline-block;
+  position: relative;
+  height: 30px;
+  float: right;
+  padding: 0;
+  position: relative;
+
+
+  input[type="text"] {
+    height: 35px;
+    font-size: 18px;
+    display: inline-block;
+    font-family: @font-family;
+    font-weight: 100;
+    border: none;
+    outline: none;
+    color: #555;
+    padding: 3px;
+    padding-right: 20px;
+    width: 130px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    z-index: 3;
+    transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+    cursor: pointer;
+    border-bottom: 1px solid  #31bd8e;
+  }
+  
+  input[type="text"]:focus:hover {
+    border-bottom: 1px solid  #31bd8e;
+  }
+  
+  input[type="text"]:focus {
+    width: 300px;
+    z-index: 1;
+    border-bottom: 1px solid #31bd8e;
+    cursor: text;
+
+  }
+
+  .submitsearch{
+  position: absolute;
+    z-index: 4;
+   bottom: 0;
+    right:0px;
+    bottom: -10px;
+  }
+  
+
+}
+
+
+
+
+
+.table-wrap{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+    position: relative;
+    font-family: @font-family;
+    }
+
+    .loading-img{
+      margin: auto;
+      position: fixed;
+      top: 30%; left: 0; right: 0;
+      width: 100px;
+      height: 20px
+    }
+
+    @media screen and (max-width: 448px) {
+      top: 0; left: 0; bottom: 0 ;right: 0;
+
+    }
+
+    
+    table {
+      border-spacing: 1;
+      border-collapse: collapse;
+      background: @white;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+    table * {
+      position: relative;
+    }
+    table td, table th {
+      padding-left: 8px;
+    }
+    table thead tr {
+      height: 60px;
+      background: linear-gradient(45deg, rgba(49,189,142,1) 0%,rgba(50,184,218,1) 100%);
+    }
+    table tbody tr {
+      height: 50px;
+      transition:all linear 0.1s;
+    }
+    table tbody tr:last-child {
+      border: 0;
+    }
+    table td, table th {
+      text-align: left;
+    }
+    table td.l, table th.l {
+      text-align: right;
+    }
+    table td.c, table th.c {
+      text-align: center;
+    }
+    table td.r, table th.r {
+      text-align: center;
+    }
+    
+    
+    .table-head th{
+    
+      font-size: 18px;
+      color: @white;
+      line-height: 1.2;
+      font-weight: unset;
+    }
+
+    table tfoot tr {
+      height: 60px;
+      background:#e8eeef;
+      font-size: 18px;
+      color: @grey;
+      line-height: 1.2;
+      font-weight: unset;
+    }
+    
+    tbody tr:nth-child(even) {
+      background-color: #f5f5f5;
+    }
+    
+    tbody tr {
+     
+      font-size: 15px;
+      color: #808080;
+      line-height: 1.2;
+      font-weight: unset;
+    }
+    
+    tbody tr:hover {
+      color: #555555;
+      background-color: #f5f5f5;
+      cursor: pointer;
+    }
+
+
+    @media screen and (max-width: 992px) {
+      table {
+        display: block;
+      }
+      table > *, table tr, table td, table th {
+        display: block;
+      }
+      table thead {
+        display: none;
+      }
+      table tbody tr {
+        height: auto;
+        padding: 37px 0;
+      }
+      table tbody tr td {
+        padding-left: 40% !important;
+        margin-bottom: 24px;
+      }
+      table tbody tr td:last-child {
+        margin-bottom: 0;
+      }
+      table tbody tr td:before {
+        font-family:@font-family;
+        font-size: 14px;
+        color: #999999;
+        line-height: 1.2;
+        font-weight: unset;
+        position: absolute;
+        width: 40%;
+        left: 30px;
+        top: 0;
+      }
+      table tbody tr td:nth-child(1):before {
+        content: "No";
+      }
+      table tbody tr td:nth-child(2):before {
+        content: "Name";
+      }
+      table tbody tr td:nth-child(3):before {
+        content: "Email";
+      }
+      table tbody tr td:nth-child(4):before {
+        content: "Gender";
+      }
+      table tbody tr td:nth-child(5):before {
+        content: "Created at";
+      }
+    
+    
+    
+      tbody tr {
+        font-size: 14px;
+      }
+
+      table tfoot tr {
+        height: 60px;
+        background:#e8eeef;
+        font-size: 18px;
+        color: @grey;
+        line-height: 1.2;
+        font-weight: unset;
+      }
+
+    }
+    
+    @media (max-width: 576px) {
+      .container-table100 {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+
+
+
+
+    
+    
+    .btn{
+        padding: 10px 20px;
+        cursor: pointer;
+        border:none;
+        color: @white;
+        transition: all 0.2s ;
+
+       
+
+
+    }
+    .btn-edit{
+        .btn;
+      background:@grey;
+      &:hover{
+        background-color: fadeout(@grey, 50%)
+      }
+      
+    }
+    .btn-delete{
+        .btn;
+        background:@red;
+        &:hover{
+            background-color: fadeout(@red, 50%)
+          }
+        
+      }
+
+      .btn-submit{
+        .btn;
+      background:@green;
+      &:hover{
+        background-color: fadeout(@green, 50%)
+      }
+      
+    }
+
+    .btn-cancel{
+        .btn;
+        background:@yellow;
+        &:hover{
+            background-color: fadeout(@yellow, 50%)
+          }
+        
+      }
+    
+
+      .form-user{
+
+        width: 100%;
+       
+        
+        position:fixed;
+        top:0;
+
+      }
+
+
+
+
+
+    .form-style{
+        max-width: 360px;
+        padding: 10px 20px;
+        background: #f4f7f8;
+        margin: 150px auto;
+        padding: 20px;
+        background: #f4f7f8;
+        border-radius: 8px;
+        font-family: @font-family;
+    }
+   
+    .form-style label {
+        display: block;
+        margin-bottom: 8px;
+    }
+    .form-style .image-upload {
+      
+      margin: 0 auto;
+      width: 100px;
+      text-align: center;
+  }
+
+
+    .form-style input[type="text"],
+    .form-style input[type="email"],
+    .form-style input[type="file"],
+    .form-style select {
+        font-family: @font-family;
+        background: rgba(255,255,255,.1);
+        border: 1px solid transparent;
+        border-radius: 4px;
+        font-size: 16px;
+        margin: 0;
+        outline: 0;
+        padding: 7px;
+        width: 100%;
+        box-sizing: border-box; 
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box; 
+        background-color: #e8eeef;
+        color:@grey;
+        -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+        margin-bottom: 30px;
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -ms-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        transition: all 0.30s ease-in-out;
+    }
+    .form-style input[type="text"]:focus,
+    .form-style input[type="email"]:focus,
+    .form-style input[type="file"]:focus,
+    .form-style select:focus{
+        -moz-box-shadow: 0 0 8px #88D5E9;
+    -webkit-box-shadow: 0 0 8px #88D5E9;
+    box-shadow: 0 0 8px #88D5E9;
+    border: 1px solid #88D5E9;
+    }
+    .form-style select{
+        -webkit-appearance: menulist-button;
+        height:35px;
+    }
+
+
+    .form-style input[type="text"].error,
+    .form-style input[type="email"].error,
+    .form-style select.error {
+      margin-bottom: 0px;
+      -moz-box-shadow: 0 0 8px @red;
+      -webkit-box-shadow: 0 0 8px @red;
+      box-shadow: 0 0 8px @red;
+      border: 1px solid @red;
+
+    }
+
+    .form-style span.error {
+      margin-top: 5px;
+      margin-bottom: 20px;
+      color: @red;
+      display: block;
+  }
+
+    
+.pagination {
+    
+    float: right;
+    margin-top: 10px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    cursor: pointer;
+}
+
+.pagination a.active {
+    background-color: #32b8da;
+    color: white;
+    border: 1px solid #32b8da;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

@@ -1,0 +1,147 @@
+<div class="table-wrap" [@animate]="userList.length" [ngStyle]="{'opacity':showForm=== true ? '0.3' : '100' }" >
+
+  <div style="margin-bottom:10px;">
+  <button  class="btn-submit" (click)="showAddUser()" style="float:left; margin-top:10px;">Add user</button>
+  <div class="search-wrap">
+    <input [(ngModel)]="keystring" id="search" (keyup)="searchUser(1)"  name="search" type="text" placeholder="Search user ?">
+    <div class="submitsearch" ><img width="30" src="assets/ic_search.png"></div>
+  </div>
+<br clear="all">
+  </div>
+  <table>
+    <thead>
+    <tr class="table-head">
+    <th>No</th>
+    <th> </th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Created at</th>
+    <th>Action</th>
+    </tr>
+  </thead>
+  <tbody  [ngStyle]="{'opacity':isLoading === true ? '0.4' : '100' }">
+
+    <tr  *ngFor="let user of userList ; let i = index">
+      <td><strong>{{skip + i +1}}</strong></td>
+      <td>
+        <img *ngIf="user.photo"  style="margin:5px; max-width:100px; max-height:100px;" src="{{api_image}}/{{user.photo}}">
+        <img *ngIf="!user.photo" img width="100" src="{{defaultImg}}">
+      </td>
+      <td> {{user.name}}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.gender }}</td>
+      <td>{{ user.created_at | date:'medium' }}</td>
+      <td style="width:160px">
+          <button class="btn-edit" (click)="updateUser(user,i)">edit</button>
+          <button class="btn-delete" (click)="deleteUser(user)">delete</button>
+      </td>
+
+      </tr>
+
+    </tbody>
+    <tfoot>
+      <tr>
+        <td *ngIf="isEmpty==false" colspan="7">Results: {{ userList.length}}</td>
+        <td *ngIf="isEmpty==true" colspan="7">No matching results, please type correctly.. </td>
+      </tr>
+    </tfoot>
+
+
+   
+
+
+  </table>
+  
+  <div *ngIf="onSearch == false;" class="pagination pagination-basic">
+  
+      <a  *ngFor="let page of Arr(totalPage).fill(1); let i = index" role="button" (click)="getAllUser(i+1)" [class.active]="currentPage === (i+1)">{{i+1}}</a>
+    
+  </div>
+
+  <div *ngIf="onSearch == true;" class="pagination pagination-search">
+  
+      <a  *ngFor="let page of Arr(totalPage).fill(1); let i = index" role="button" (click)="searchUser((i+1))" [class.active]="currentPage === (i+1)">{{i+1}}</a>
+    
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+</div>
+<div *ngIf="isLoading == true;" class="loading-img"><img width="100" src="assets/spinner.gif"></div>
+
+<div [@animate]="isAdd">
+<div *ngIf="isAdd == true;" class="form-user">
+    <div class="form-style">
+    <label><strong>Add User</strong> </label><br>
+
+    <div class="image-upload">
+    <label for="file"><img width="100" id="image-preview" [src]="imgPreview" > {{addUser.photo}} </label>
+
+    <input type="file" id="file" style="display:none" accept="image/x-png,image/jpeg"  (change)="handleFileInput($event)">
+  </div>
+
+    <input [class.error]="!isValidName"  [(ngModel)]="addUser.name"  type="text" placeholder="your name">
+    <span *ngIf="!isValidName" class="error">{{errormsg.name}}</span>
+    <input [class.error]="!isValidEmail"  [(ngModel)]="addUser.email" type="email" placeholder="your email">
+    <span *ngIf="!isValidEmail"  class="error">{{errormsg.email}}</span>
+    <select [class.error]="!isValidGender" [(ngModel)]="addUser.gender">
+      <option value="" selected>Select gender</option>
+      <option>Male</option>
+      <option>Female</option>
+    </select>
+    <span *ngIf="!isValidGender"  class="error">{{errormsg.gender}}</span>
+    <button class="btn-submit" type="button" (click)="submitAddUser(addUser)" >Submit</button>
+    <button class="btn-cancel" type="button" (click)="cancelAll()" >Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div [@animate]="isEdit">
+  <div *ngIf="isEdit == true;"  class="form-user">
+<div class="form-style">
+<label><strong>Edit User</strong> </label><br>
+
+<div class="image-upload">
+<label for="file2"><img width="100"  id="image-preview" [src]="imgPreview" > {{editUser.photo}} </label>
+
+    <input type="file" id="file2" style="display:none" accept="image/x-png,image/jpeg" (change)="handleFileInput($event)">
+    </div>
+
+<input [class.error]="!isValidName"  [(ngModel)]="editUser.name"  type="text">
+<span *ngIf="!isValidName" class="error">{{errormsg.name}}</span>
+
+<input [class.error]="!isValidEmail"  [(ngModel)]="editUser.email"  type="email">
+<span *ngIf="!isValidEmail" class="error">{{errormsg.email}}</span>
+
+<select [class.error]="!isValidGender" [(ngModel)]="editUser.gender">
+    <option value="">Select gender</option>
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+  <span *ngIf="!isValidGender" class="error">{{errormsg.gender}}</span>
+<button class="btn-submit" type="button" (click)="submitUpdateUser(editUser)" >Save changes</button>
+<button class="btn-cancel" type="button" (click)="cancelAll()" >Cancel</button>
+</div>
+</div>
+
+</div>
+
+
+<div [@animate]="isDelete">
+    <div *ngIf="isDelete == true;"  class="form-user">
+  <div class="form-style">
+  <label><strong>Delete confirmation</strong> </label><br>
+ <p style="margin-top: 0">Are you sure want to delete this user?<br>Name: {{deletedUser.name}}<br> Email: {{deletedUser.email}}</p>
+  <button class="btn-submit" type="button" (click)="submitDeleteUser(deletedUser)" >Yes, delete it</button>
+  <button class="btn-cancel" type="button" (click)="cancelAll()" >Cancel</button>
+  </div>
+  </div>
+  
+  </div>
